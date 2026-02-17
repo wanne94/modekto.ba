@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
         <div className="space-y-4">
           <h3 className="text-lg font-bold text-foreground">Modekto.ba</h3>
           <p className="text-sm">
-            Vaš partner u kreiranju savršenog utočišta. Nudimo moderna arhitektonska rješenja spremna za realizaciju.
+            Vaš partner u kreiranju idealnog utočišta. Nudimo moderna arhitektonska rješenja spremna za realizaciju.
           </p>
         </div>
         

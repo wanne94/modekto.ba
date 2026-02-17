@@ -449,7 +449,7 @@ export const MOCK_HOUSES: HouseDesign[] = [
   {
     id: '25',
     title: 'Moderni Farmhouse 4 Sobe',
-    description: 'Savršeno uravnotežen moderni farmhouse s otvorenim planom dnevnog boravka, velikom kuhinjom i prostornim spavaćim sobama. Idealan za porodice koje cijene moderan dizajn i funkcionalnost.',
+    description: 'Skladno uravnotežen moderni farmhouse s otvorenim planom dnevnog boravka, velikom kuhinjom i prostornim spavaćim sobama. Idealan za porodice koje cijene moderan dizajn i funkcionalnost.',
     price: 89,
     sqMeters: 223,
     bedrooms: 4,
