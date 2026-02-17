@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useAdmin } from '../../lib/admin-context';
 import { StatsCard } from '../../components/admin/StatsCard';
+import { formatPrice } from '../../lib/utils';
 import { ProjectsTable } from '../../components/admin/ProjectsTable';
 
 const CATEGORIES = ['Moderni', 'Alpski', 'Mediteranski', 'Mala Kuća'] as const;
@@ -41,7 +42,7 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <StatsCard icon="🏠" label="Ukupno projekata" value={total} />
           <StatsCard icon="★" label="Featured" value={featured} />
-          <StatsCard icon="💰" label="Prosječna cijena/m²" value={`${avgPrice} KM`} />
+          <StatsCard icon="💰" label="Prosječna cijena" value={formatPrice(avgPrice)} />
           {byCategory.map(({ cat, count }) => (
             <StatsCard key={cat} label={cat} value={count} sub="projekata" />
           ))}

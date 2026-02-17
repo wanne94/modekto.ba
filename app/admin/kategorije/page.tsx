@@ -2,6 +2,7 @@
 
 import { useAdmin } from '../../../lib/admin-context';
 import { HouseDesign } from '../../../types';
+import { formatPrice } from '../../../lib/utils';
 
 const CATEGORIES: HouseDesign['category'][] = ['Moderni', 'Alpski', 'Mediteranski', 'Mala Kuća'];
 
@@ -47,11 +48,11 @@ export default function KategorijaPage() {
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-500">Min cijena</p>
-                  <p className="font-bold text-gray-900">{min} KM</p>
+                  <p className="font-bold text-gray-900">{formatPrice(min)}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-xs text-gray-500">Max cijena</p>
-                  <p className="font-bold text-gray-900">{max} KM</p>
+                  <p className="font-bold text-gray-900">{formatPrice(max)}</p>
                 </div>
               </div>
 
@@ -68,7 +69,7 @@ export default function KategorijaPage() {
                         />
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-gray-900 truncate">{p.title}</p>
-                          <p className="text-xs text-gray-500">{p.price} KM/m² · {p.sqMeters} m²</p>
+                          <p className="text-xs text-gray-500">{formatPrice(p.price)} · {p.sqMeters} m²</p>
                         </div>
                       </div>
                     ))}

@@ -1,6 +1,7 @@
 import { Hero } from '@/components/Hero';
 import { ListingGrid } from '@/components/ListingGrid';
-import { AIPreporuka } from '@/components/AIPreporuka';
+import { FAQSection } from '@/components/FAQ';
+import { AIPreporukaSection } from '@/components/AIPreporukaSection';
 
 export default function Home() {
   return (
@@ -8,7 +9,8 @@ export default function Home() {
       <main>
         <Hero />
         <ListingGrid />
-        <AIPreporuka />
+        <FAQSection />
+        <AIPreporukaSection />
 
         {/* Newsletter sekcija */}
         <section className="py-20 bg-primary/5 border-y border-border">

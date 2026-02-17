@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { Menu, X, Home, Sparkles } from 'lucide-react';
-import { Button } from './ui/button';
 
 export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +18,8 @@ export const Header: React.FC = () => {
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <a href="/" className="transition-colors hover:text-foreground/80 text-foreground/60">Početna</a>
-          <a href="/#kolekcija" className="transition-colors hover:text-foreground/80 text-foreground/60">Kolekcija</a>
+          <a href="/#kolekcija" className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-semibold bg-white text-gray-900 hover:bg-white/90 transition-colors">Idejni projekti</a>
+          <a href="/#faq" className="transition-colors hover:text-foreground/80 text-foreground/60">Najčešća pitanja</a>
           <a href="/#ai-preporuka" className="transition-colors hover:text-primary text-primary/80 flex items-center gap-1 font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
             AI Preporuka
@@ -29,11 +29,9 @@ export const Header: React.FC = () => {
 
         <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center gap-1">
-             <Button variant="ghost" size="sm">Prijava</Button>
              <a href="/admin" className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-3 text-foreground/60 hover:text-foreground/80 hover:bg-accent transition-colors">
                Admin
              </a>
-             <Button size="sm">Naruči Projekt</Button>
           </div>
           <button 
             className="md:hidden p-2" 
@@ -48,7 +46,8 @@ export const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden border-t p-4 bg-background">
           <nav className="flex flex-col space-y-4">
-            <a href="/#kolekcija" className="text-sm font-medium" onClick={() => setIsMenuOpen(false)}>Kolekcija</a>
+            <a href="/#kolekcija" className="inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-semibold bg-white text-gray-900 hover:bg-white/90 transition-colors w-fit" onClick={() => setIsMenuOpen(false)}>Idejni projekti</a>
+            <a href="/#faq" className="text-sm font-medium" onClick={() => setIsMenuOpen(false)}>Najčešća pitanja</a>
             <a href="/#ai-preporuka" className="text-sm font-semibold text-primary flex items-center gap-1" onClick={() => setIsMenuOpen(false)}>
               <Sparkles className="w-3.5 h-3.5" />
               AI Preporuka

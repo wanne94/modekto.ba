@@ -1,9 +1,10 @@
 import { HouseDesign } from '../types';
 
 export const UPSELL_OPTIONS = [
-  { id: 'extra-renders', label: 'Dodatni renderi', description: '5 dodatnih 3D vizualizacija eksterijera i interijera', price: 15 },
-  { id: 'floor-plan', label: 'Prilagodba tlocrta', description: 'Jedna prilagodba rasporeda prostorija prema vašim željama', price: 30 },
+  { id: 'floor-plan', label: 'Prilagodba tlocrta', description: 'Jedna izmjena rasporeda prostorija prema tvojim željama', price: 30 },
   { id: 'investor-pack', label: 'Paket za investitore', description: 'ROI analiza, troškovnik gradnje i prezentacijski materijal', price: 20 },
+  { id: 'technical-docs', label: 'Tehnička dokumentacija', description: 'Kompletna tehnička dokumentacija (presjeci, detalji, specifikacije materijala)', price: 45 },
+  { id: 'architect-consult', label: 'Konzultacija s arhitektom', description: '60-minutni video poziv s arhitektom — prilagodba, savjeti, Q&A', price: 35 },
 ];
 
 export const MOCK_HOUSES: HouseDesign[] = [

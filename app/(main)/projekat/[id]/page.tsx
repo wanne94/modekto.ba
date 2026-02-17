@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getProjectById, getSimilarProjects } from '@/lib/projects';
+import { getProjectById, getSimilarProjects, UPSELL_OPTIONS } from '@/lib/projects';
+import { formatPrice } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -20,6 +21,7 @@ import {
 } from 'lucide-react';
 import { CheckoutSection } from '@/components/CheckoutSection';
 import { FloorPlanSVG } from '@/components/FloorPlanSVG';
+import { ProjectImageGallery } from '@/components/ProjectImageGallery';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -55,42 +57,12 @@ export default async function ProjekatPage({ params }: Props) {
       <section className="container mx-auto px-4 md:px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* Left: Gallery (60%) */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted group">
-              <img
-                src={allImages[0]}
-                alt={project.title}
-                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
-              />
-              {project.featured && (
-                <Badge className="absolute top-3 right-3 bg-yellow-500 text-white border-none">
-                  Izdvojeno
-                </Badge>
-              )}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-                <span className="text-white/30 text-3xl font-bold tracking-widest uppercase select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] -rotate-12">
-                  MODEKTO.BA
-                </span>
-              </div>
-            </div>
-            {allImages.length > 1 && (
-              <div className="flex gap-3">
-                {allImages.slice(1).map((img, i) => (
-                  <div key={i} className="relative aspect-[4/3] w-1/3 overflow-hidden rounded-lg bg-muted group cursor-pointer">
-                    <img
-                      src={img}
-                      alt={`${project.title} ${i + 2}`}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                      <span className="text-white/30 text-sm font-bold tracking-widest uppercase select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-                        MODEKTO.BA
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+          <div className="lg:col-span-3">
+            <ProjectImageGallery
+              images={allImages}
+              title={project.title}
+              featured={project.featured}
+            />
           </div>
 
           {/* Right: Sticky info card (40%) */}
@@ -232,28 +204,22 @@ export default async function ProjekatPage({ params }: Props) {
         <div className="max-w-3xl">
           <h2 className="text-2xl font-bold mb-4">Šta se može dokupiti</h2>
           <ul className="space-y-3">
-            <li className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
-              <span className="shrink-0 text-primary font-bold text-base leading-none">+</span>
-              <div>
-                <span className="font-medium">Glavni projekat</span>
-                <span className="text-muted-foreground"> – dostupan uz doplatu</span>
-              </div>
-            </li>
-            <li className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
-              <span className="shrink-0 text-primary font-bold text-base leading-none">+</span>
-              <div>
-                <span className="font-medium">Izvođenje radova</span>
-                <span className="text-muted-foreground"> (osim temelja) – dostupno za kupce iz Bosne i Hercegovine</span>
-              </div>
-            </li>
-            <li className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/20 text-sm">
-              <span className="shrink-0 text-primary font-bold text-base leading-none">+</span>
-              <div>
-                <span className="font-medium">Korekcije i izmjene projekta</span>
-                <span className="text-muted-foreground"> – dostupno uz prethodnu konsultaciju, <a href="/kontakt" className="underline underline-offset-2 hover:text-foreground transition-colors">stupite u kontakt</a></span>
-              </div>
-            </li>
+            {UPSELL_OPTIONS.map((opt) => (
+              <li key={opt.id} className="flex items-start justify-between gap-4 p-4 rounded-lg bg-primary/5 border border-primary/20 text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="shrink-0 text-primary font-bold text-base leading-none">+</span>
+                  <div>
+                    <span className="font-medium">{opt.label}</span>
+                    <p className="text-muted-foreground mt-0.5">{opt.description}</p>
+                  </div>
+                </div>
+                <span className="shrink-0 font-bold text-primary">{opt.price} €</span>
+              </li>
+            ))}
           </ul>
+          <p className="text-xs text-muted-foreground mt-3">
+            Dodaci se biraju pri narudžbi. <Link href={`/checkout/${project.id}`} className="underline underline-offset-2 hover:text-foreground transition-colors">Naruči projekat</Link> i odaberi željene dodatke.
+          </p>
         </div>
       </section>
 
@@ -286,7 +252,7 @@ export default async function ProjekatPage({ params }: Props) {
                     <CardHeader className="p-4 pb-2">
                       <div className="flex justify-between items-start">
                         <CardTitle className="text-lg">{house.title}</CardTitle>
-                        <div className="font-bold text-primary">{house.price} €</div>
+                        <div className="font-bold text-primary">{formatPrice(house.price)}</div>
                       </div>
                       <CardDescription className="line-clamp-2">{house.description}</CardDescription>
                     </CardHeader>

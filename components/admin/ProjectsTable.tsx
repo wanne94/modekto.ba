@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { HouseDesign } from '../../types';
 import { useAdmin } from '../../lib/admin-context';
+import { formatPrice } from '../../lib/utils';
 
 interface ProjectsTableProps {
   projects: HouseDesign[];
@@ -39,7 +40,7 @@ export function ProjectsTable({ projects, limit }: ProjectsTableProps) {
               <td className="py-3 pr-4">
                 <span className="px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-700">{p.category}</span>
               </td>
-              <td className="py-3 pr-4">{p.price} KM</td>
+              <td className="py-3 pr-4">{formatPrice(p.price)}</td>
               <td className="py-3 pr-4">{p.sqMeters} m²</td>
               <td className="py-3 pr-4">
                 {p.featured ? (

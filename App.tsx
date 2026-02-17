@@ -2,7 +2,6 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ListingGrid } from './components/ListingGrid';
-import { AIArchitect } from './components/AIArchitect';
 import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
@@ -11,8 +10,7 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
-        <AIArchitect />
-        <ListingGrid />
+<ListingGrid />
         
         {/* Features/Trust Section */}
         <section id="o-nama" className="py-16 bg-muted/20">
